@@ -103,11 +103,11 @@ it.<br>
  
  ***Getting the application code***
  ```bash
- > git clone https://github.com/nigelpoulton/psweb.git
+$ git clone https://github.com/nigelpoulton/psweb.git
  ```
 ***Inspecting the Dockerfile***
 ```bash
-> cat Dockerfile
+$ cat Dockerfile
 ```
 
 The Dockerfile has two main purposes:<br>
@@ -141,9 +141,9 @@ $ docker-compose --version
 • docker-compose.yml<br>
 Clone the Git repo locally.<br>
 ```bash
-> git clone https://github.com/nigelpoulton/counter-app.git
-> cd counter-app
-> ls
+$ git clone https://github.com/nigelpoulton/counter-app.git
+$ cd counter-app
+$ ls
 
 ```
 Let’s quickly describe each file:<br>
@@ -210,7 +210,7 @@ $ docker service create --name web-fe \
 ```bash
 $ docker service ls
 $ docker service ps web-fe
->  docker service inspect --pretty web-fe
+$ docker service inspect --pretty web-fe
 ```
 
 ***Scaling a service***
