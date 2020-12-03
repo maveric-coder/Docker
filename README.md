@@ -263,5 +263,28 @@ Docker networking is based on an open-source pluggable architecture called the C
 $ docker network ls
 
 $ docker network create -d bridge localnet
+$ docker container run -d --name c1 \
+  --network localnet \
+  alpine sleep 1d
+  
+$ docker network inspect localnet --format '{{json .Containers}}'
+
+$ docker container run -it --name c2 \
+  --network localnet \
+  alpine sh
 
 ```
+From within the “c2” container, ping the “c1” container by name.
+```bash
+$ ping c1
+```
+
+An example of mapping port 80 on a container running a web server, to port 5000 on the Docker host.
+```bash
+$ docker container run -d --name web \
+  --network localnet \
+  --publish 5000:80 \
+  
+```
+`localhost or 127.0.0.1.`
+  nginx
