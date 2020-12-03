@@ -158,3 +158,110 @@ Let’s quickly describe each file:<br>
  > docker-compose up &
  > docker-compose -f prod-equus-bass.yml up
  ```
+ 
+ 
+ 
+ ###  Docker Swarm
+ At a high level Swarm has two major components:<br>
+• A secure cluster<br>
+• An orchestration engine<br>
+
+Each of the nodes needs Docker installed and needs to be able to communicate with the rest of the swarm. It’ also beneficial if name resolution is configured — it makes it easier to identify nodes in command outputs and helps when troubleshooting.
+
+***Initializing a brand new swarm***
+Docker nodes that are not part of a swarm are said to be in single-engine mode. Once they’re added to a swarm they’re switched into swarm mode.<br>
+The following steps will put mgr1 into swarm mode and initialize a new swarm. It will then join wrk1, wrk2, and wrk3 as worker nodes — automatically putting them into swarm mode. Finally, it will add mgr2 and mgr3 as additional managers and switch them into swarm mode.<br>
+
+1. Log on to mgr1 and initialize a new swarm
+```bash
+> docker swarm init \
+  --advertise-addr 10.0.0.1:2377 \
+  --listen-addr 10.0.0.1:2377
+  
+> docker swarm join-token worker
+> docker swarm join-token manager
+  
+ ``` 
+ 
+ To join:
+ ```bash
+> docker swarm join \
+  --token SWMTKN-1-0uahebax...ue4hv6ps3p \  
+  10.0.0.1:2377 \
+  --advertise-addr 10.0.0.2:2377 \
+  --listen-addr 10.0.0.1:2377
+ ```
+ 
+List the nodes in the swarm by running docker node ls from any of the manager nodes in the swarm.
+```bash
+> docker node ls
+```
+
+***Swarm services***
+`docker service create` to tell Docker we are declaring a new service, and we used the `--name` flag to name it `web-fe`. We told Docker to map `port 8080 `on every node in the swarm to 8080 inside of each service replica. Next, we used the `-- replicas` flag to tell Docker that there should always be 5 replicas of this service.
+```bash
+> docker service create --name web-fe \
+  -p 8080:8080 \
+  --replicas 5 \
+  nigelpoulton/pluralsight-docker-ci
+```  
+
+*Viewing and inspecting services*
+```bash
+> docker service ls
+> docker service ps web-fe
+>  docker service inspect --pretty web-fe
+```
+
+***Scaling a service***
+```bash
+> docker service scale web-fe=10
+> docker service scale web-fe=5
+```
+
+***Removing a service***
+```bash
+> docker service rm web-fe
+```
+
+Be careful using the docker service rm command, as it deletes all service replicas without asking for confirmation.
+
+
+***Rolling updates***
+
+This creates a new overlay network called “uber-net” that we’ll be able to leverage with the service we’re about to create. An overlay network creates a new layer 2
+network that we can place containers on, and all containers on it will be able to communicate. This works even if the Docker hosts the containers are running on are
+on different underlying networks. Basically, the overlay network creates a new layer 2 container network on top of potentially multiple different underlying networks.
+```bash
+> docker network create -d overlay uber-net
+> docker network ls
+
+> docker service create --name uber-svc \
+  --network uber-net \
+  -p 80:80 --replicas 12 \
+  nigelpoulton/tu-demo:v1
+  
+> docker service ls
+> docker service ps uber-svc
+
+> docker service update \
+  --image nigelpoulton/tu-demo:v2 \
+  --update-parallelism 2 \
+  --update-delay 20s uber-svc
+  
+> docker service ps uber-svc
+  
+```
+
+
+### Docker Networking
+Docker runs applications inside of containers, and these need to communicate over lots of different networks. This means Docker needs strong networking capabilities.
+Docker networking is based on an open-source pluggable architecture called the Container Network Model (CNM).
+
+
+```bash
+> docker network ls
+
+$ docker network create -d bridge localnet
+
+```
