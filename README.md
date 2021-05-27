@@ -47,7 +47,6 @@ $ docker images
 $ docker image rm nginx:l-alpine-perl
 $ docker rmi 38049a7d921n293423
 $ docker rmi 3849a7sdf9sdf923f9 --force
-$ docker rm $( docker ps -aq)  ##This will remove all the containers
 
 ```
 ## Starting a new container
@@ -90,6 +89,7 @@ $ docker ps-a
 $ docker container rm 672fc9dasd83h3j393
 $ docker container rm my_busybox --force
 $ docker container prune
+$ docker rm $( docker ps -aq)  ##This will return container ID while removing them
 ```
 
 ## Containerizing an app
