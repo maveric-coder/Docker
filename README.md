@@ -47,6 +47,8 @@ $ docker images
 $ docker image rm nginx:l-alpine-perl
 $ docker rmi 38049a7d921n293423
 $ docker rmi 3849a7sdf9sdf923f9 --force
+$ docker rm $( docker ps -aq)  ##This will remove all the containers
+
 ```
 ## Starting a new container
 <br>The most common way of starting containers is using the Docker CLI. The following
