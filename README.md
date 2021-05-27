@@ -66,7 +66,9 @@ $ docker container run -d --name webserver -p 80:8080 \
 To exec any command
 ```bash
 $ docker exec -it my_busybox pwd
->  docker container run --name percy -it ubuntu:latest /bin/bash
+$ docker exec -it ubuntu1 bash
+$ docker attach ubuntu1
+$ docker container run --name percy -it ubuntu:latest /bin/bash
 $ docker container run --name neversaydie -it --restart always alpine sh
 $ docker container run -d --name always \
   --restart always \
