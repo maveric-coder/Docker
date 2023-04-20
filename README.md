@@ -13,14 +13,14 @@ When you install Docker, you get two major components:<br>
 
 You can use the ``` docker version ```command to test that the client and daemon (server) are running and talking to each other.
 ```bash
-$ docker version
+$ docker version ## to check docker version
 ```
 ### Images
 It’s useful to think of a Docker image as an object that contains an OS filesystemand an application. If you work in operations, it’s like a virtual machine template.
 <br>Run the ```docker image ls ``` command on your Docker host.
 ```bash
-$ docker image ls
-$ docker search python:3.7
+$ docker image ls or docker images ## to check the list of images
+$ docker search python:3.7  ## to serach the particularly image
 $ docker search registry
 ```
 To filter out and see only few columns
@@ -31,7 +31,7 @@ $ docker search --format "{{.Name}}\t{{.Description}}\t{{.IsOfficial}}" registry
 ```
 To list out all the present images in the node:
 ```bash
-$ docker images
+$ docker images  
 $ docker images ls
 $ docker images nginx
 ```
@@ -39,13 +39,13 @@ $ docker images nginx
 ```bash
 $ docker image pull nginx:latest
 $ docker image pull nginx:alpine
-$ docker image pull --all-tags nginx
+$ docker image pull --all-tags nginx ## it will pull all nginx images
 ```
 ***Clean up***
 ```bash
 $ docker images
 $ docker image rm nginx:l-alpine-perl
-$ docker rmi 38049a7d921n293423
+$ docker rmi 38049a7d921n293423  ## to delete image
 $ docker rmi 3849a7sdf9sdf923f9 --force
 
 ```
@@ -53,7 +53,7 @@ $ docker rmi 3849a7sdf9sdf923f9 --force
 <br>The most common way of starting containers is using the Docker CLI. The following
 docker container run command will start a simple new container.
 ```bash
-$ docker container create -it --name cc_busybox_A busybox:latest
+$ docker container create -it --name cc_busybox_A busybox:latest  
 $ docker container run -itd --rm --name cc_busybox_B busybox:latest
 $ docker ps -a
 $ docker container start cc_busybox_A
@@ -64,11 +64,11 @@ $ docker container run -d --name webserver -p 80:8080 \
   nigelpoulton/pluralsight-docker-ci
 
 ```
-To exec any command
+To execute any command
 ```bash
-$ docker exec -it my_busybox pwd
+$ docker exec -it my_busybox pwd 
 $ docker exec -it ubuntu1 bash
-$ docker attach ubuntu1
+$ docker attach ubuntu1   ## to attach the shell of the contianer
 $ docker container run --name percy -it ubuntu:latest /bin/bash
 $ docker container run --name neversaydie -it --restart always alpine sh
 $ docker container run -d --name always \
@@ -85,10 +85,10 @@ $ docker container run -itd --name cont_nginx_A -p nginx:latest
 ```
 ***Remove Containers***
 ```bash
-$ docker ps-a
-$ docker container rm 672fc9dasd83h3j393
-$ docker container rm my_busybox --force
-$ docker container prune
+$ docker ps-a   ## list all the contianers
+$ docker container rm 672fc9dasd83h3j393    ## to delete container by using container id
+$ docker container rm my_busybox --force    ## to delete container by using container name
+$ docker container prune     ## this cmd will delete all containers which are created ( don't use this cmd)
 $ docker rm $( docker ps -aq)  ##This will return container ID while removing them
 ```
 
