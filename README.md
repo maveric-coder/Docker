@@ -296,3 +296,26 @@ $ docker container run -d --name web \
 ```
 `localhost or 127.0.0.1.`
   nginx
+
+
+### Contenerising Java application
+Create Dockerfile
+
+```bash
+$ vi Dockerfile
+
+FROM tomcat:8.0-alpine
+LABEL maintainer="deepak@softwareyoga.com"
+
+ADD sample.war /usr/local/tomcat/webapps/
+
+EXPOSE 8080
+CMD ["catalina.sh", "run"]
+```
+Paste the above mentioned code in Dockerfile
+
+And build the image using command
+`$ docker build -t mywebapp .`
+
+Run a container using the image
+`$docker run -p 8080:8080 mywebapp`
