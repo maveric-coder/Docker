@@ -169,7 +169,7 @@ Let’s quickly describe each file:<br>
  
  
  
- ###  Docker Swarm
+ ## Docker Swarm
  At a high level Swarm has two major components:<br>
 • A secure cluster<br>
 • An orchestration engine<br>
@@ -262,7 +262,7 @@ $ docker service ps uber-svc
 ```
 
 
-### Docker Networking
+## Docker Networking
 Docker runs applications inside of containers, and these need to communicate over lots of different networks. This means Docker needs strong networking capabilities.
 Docker networking is based on an open-source pluggable architecture called the Container Network Model (CNM).
 
@@ -297,6 +297,24 @@ $ docker container run -d --name web \
 `localhost or 127.0.0.1.`
   nginx
 
+## Docker Volumes
+
+The recommended way to persist data in containers is with volumes.
+At a high-level, you create a volume, then you create a container, and you mount the volume into it. The volume gets mounted to a directory in the container’s filesystem, and anything written to that directory is written to the volume. If you then delete the container, the volume and its data will still exist.
+
+Use the following command to create a new volume called myvol.
+```bash 
+$ docker volume create myvol
+$ docker volume inspect myvol
+```
+By default, Docker creates new volumes with the built-in local driver. As the name suggests, local volumes are only available to containers on the node they’re created on. Use the -d flag to specify a different driver.
+
+There are two ways to detele docker volumes i.e. `docker volume prune` and `docker volume rm`
+To attach the created *Volume* to a container, we willl execute below commands.
+```bash
+$ docker container run -dit --name voltainer \ --mount source=myvol,target=/vol \ alpine
+$ docker run --name MyJenkins1 -v myvol1:/var/jenkins_home -p 8080:8080 -p 50000:50000 jenkins
+```
 
 ### Contenerising Java application
 Create Dockerfile
