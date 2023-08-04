@@ -305,7 +305,7 @@ Create Dockerfile
 $ vi Dockerfile
 
 FROM tomcat:8.0-alpine
-LABEL maintainer="deepak@softwareyoga.com"
+LABEL maintainer="anand.kumar1@hotmail.com"
 
 ADD sample.war /usr/local/tomcat/webapps/
 
