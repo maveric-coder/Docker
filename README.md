@@ -345,9 +345,23 @@ $ docker rm -f <container_id>
 $ docker run -d --name springmongoapp -p 8080:8080 anand2909/spring-boot-mongo
 java -Dspring.data.mongodb.uri=mongodb://<Mongo_container_IP>:27017/spring-mongo -Djava.security.egd=file:/dev/./urandom -jar ./spring-boot-mongo.jar
 ```
+The date being entered will be stored now but it will be only till the Mongo DB is present in the server. Once the Mongo container is deleted the saved data will be flushed out. Docker volume will make the date persistent and can be attached to other containers.
+Delete the existing mongo container and create a new Mongo container with a new volume.
+```bash
+$ docker volume create mongobckp
+$ docker run -d --name mongo_container -v mongobckp:/data/db mongo
+```
 
+There are two types of  volumes:
+* Local volume
+* Network volume
 
-
+To use the network volume, [REX-RAY](https://rexray.readthedocs.io/en/v0.9.0/user-guide/docker-plugins/) can be used
+```bash
+$ docker plugin install rexray/ebs   EBS_ACCESSKEY=AKIA2NNCZ7U3DFCHL7N4   EBS_SECRETKEY=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
+$ docker volume create --driver rexray/ebs --name ebsvol
+$ docker run -d --name mongo_container -v rexray/ebs:/data/db mongo
+```
 
 ### Contenerising Java application
 Create Dockerfile
