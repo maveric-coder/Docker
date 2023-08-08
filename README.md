@@ -3,6 +3,7 @@
 ## Index
 
 * [Introduction](https://github.com/maveric-coder/Docker#hello-containers)
+* [Images](https://github.com/maveric-coder/Docker#images)
 * [Containerizing an app](https://github.com/maveric-coder/Docker-Kubernetes#containerizing-an-app)
   * [Containerize a single-container app](https://github.com/maveric-coder/Docker#containerize-a-single-container-app)
   * [Deploying Apps with Docker Compose](https://github.com/maveric-coder/Docker#deploying-apps-with-docker-compose)
@@ -26,7 +27,7 @@ You can use the ``` docker version ```command to test that the client and daemon
 ```bash
 $ docker version ## to check docker version
 ```
-### Images
+## Images
 It’s useful to think of a Docker image as an object that contains an OS filesystemand an application. If you work in operations, it’s like a virtual machine template.
 <br>Run the ```docker image ls ``` command on your Docker host.
 ```bash
