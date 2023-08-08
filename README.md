@@ -334,7 +334,17 @@ Create an App container by
 ```bash
 $ docker run -d --name springmongoapp -p 8080:8080 anand2909/spring-boot-mongo
 ```
-
+Let's create a Mongo container to enter and process the entered data.
+```bash
+$ docker run -d --name mongo_container mongo
+```
+Now if we will open the webpage for the application we will still not be able to connect as we did not do the needed configuration.
+Delete the existing app container and recreate by mentioned commands
+```bash
+$ docker rm -f <container_id>
+$ docker run -d --name springmongoapp -p 8080:8080 anand2909/spring-boot-mongo
+java -Dspring.data.mongodb.uri=mongodb://<Public_IP>:27017/spring-mongo -Djava.security.egd=file:/dev/./urandom","-jar ./spring-boot-mongo.jar
+```
 
 
 
