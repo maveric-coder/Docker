@@ -343,7 +343,7 @@ Delete the existing app container and recreate by mentioned commands
 ```bash
 $ docker rm -f <container_id>
 $ docker run -d --name springmongoapp -p 8080:8080 anand2909/spring-boot-mongo
-java -Dspring.data.mongodb.uri=mongodb://<Public_IP>:27017/spring-mongo -Djava.security.egd=file:/dev/./urandom","-jar ./spring-boot-mongo.jar
+java -Dspring.data.mongodb.uri=mongodb://<Mongo_container_IP>:27017/spring-mongo -Djava.security.egd=file:/dev/./urandom","-jar ./spring-boot-mongo.jar
 ```
 
 
