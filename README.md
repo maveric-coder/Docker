@@ -315,6 +315,29 @@ To attach the created *Volume* to a container, we willl execute below commands.
 $ docker container run -dit --name voltainer \ --mount source=myvol,target=/vol \ alpine
 $ docker run --name MyJenkins1 -v myvol1:/var/jenkins_home -p 8080:8080 -p 50000:50000 jenkins
 ```
+#### Spring boot mongo app
+
+To understand better how making the data persistent actually works. Let's see through a live application deployment.
+Clone the repository to the server with docker, the same server should have maven installed as well (to build the application)
+```bash
+$ git clone https://github.com/maveric-coder/spring-boot-mongo-docker.git
+$ cd spring-boot-mongo-docker
+$ mvn clean package
+```
+By executing the above commands, in the target folder `.jar` file will be available as the artifact ready to be deployed.
+The `Dockerfile` present in the folder contains info and commands to build the image to run the created artifact.Below mentioned command will build an image.
+```bash
+$ docker build -t anand2909/spring-boot-mongo .
+```
+To check the build image run `$ docker images` and inspect the image by running `$docker image inspect anand2909/spring-boot-mongo`.
+Create an App container by
+```bash
+$ docker run -d --name springmongoapp -p 8080:8080 anand2909/spring-boot-mongo
+```
+
+
+
+
 
 ### Contenerising Java application
 Create Dockerfile
