@@ -141,6 +141,28 @@ $ docker container run -d --name c1 \
   -p 80:8080 \
   web:latest
 ```
+#### Contenerising Java application
+Create Dockerfile
+
+```bash
+$ vi Dockerfile
+
+FROM tomcat:8.0-alpine
+LABEL maintainer="anand.kumar1@hotmail.com"
+
+ADD sample.war /usr/local/tomcat/webapps/
+
+EXPOSE 8080
+CMD ["catalina.sh", "run"]
+```
+Paste the above mentioned code in Dockerfile
+
+And build the image using command
+`$ docker build -t mywebapp .`
+
+Run a container using the image
+`$docker run -p 8080:8080 mywebapp`
+
 ###  Deploying Apps with Docker Compose
 Instead of gluing everything together with scripts and long docker commands, Docker Compose lets you describe an entire app in a single declarative configuration file. You then deploy it with a single command.<br>
 Once the app is deployed, you can manage its entire lifecycle with a simple set of commands. You can even store and manage the configuration file in a version control system!
@@ -370,25 +392,3 @@ $ docker plugin install rexray/ebs   EBS_ACCESSKEY=AKIA2NNCZ7U3DFCHL7N4   EBS_SE
 $ docker volume create --driver rexray/ebs --name ebsvol
 $ docker run -d --name mongo_container -v rexray/ebs:/data/db mongo
 ```
-
-### Contenerising Java application
-Create Dockerfile
-
-```bash
-$ vi Dockerfile
-
-FROM tomcat:8.0-alpine
-LABEL maintainer="anand.kumar1@hotmail.com"
-
-ADD sample.war /usr/local/tomcat/webapps/
-
-EXPOSE 8080
-CMD ["catalina.sh", "run"]
-```
-Paste the above mentioned code in Dockerfile
-
-And build the image using command
-`$ docker build -t mywebapp .`
-
-Run a container using the image
-`$docker run -p 8080:8080 mywebapp`
