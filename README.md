@@ -376,7 +376,7 @@ $ docker run -d --name springmongoapp -p 8080:8080 anand2909/spring-boot-mongo
 ```
 Let's create a Mongo container to enter and process the entered data.
 ```bash
-$ docker run -d --name mongo_container mongo
+$ docker run -d --name mongo mongo
 ```
 Now if we will open the webpage for the application we will still not be able to connect as we did not do the needed configuration.
 Delete the existing app container and recreate by mentioned commands
@@ -389,7 +389,7 @@ The date being entered will be stored now but it will be only till the Mongo DB 
 Delete the existing mongo container and create a new Mongo container with a new volume.
 ```bash
 $ docker volume create mongobckp
-$ docker run -d --name mongo_container -v mongobckp:/data/db mongo
+$ docker run -d --name mongo -v mongobckp:/data/db mongo
 ```
 
 There are two types of  volumes:
@@ -400,5 +400,12 @@ To use the network volume, [REX-RAY](https://rexray.readthedocs.io/en/v0.9.0/use
 ```bash
 $ docker plugin install rexray/ebs   EBS_ACCESSKEY=AKIA2NNCZ7U3DFCHL7N4   EBS_SECRETKEY=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
 $ docker volume create --driver rexray/ebs --name ebsvol
-$ docker run -d --name mongo_container -v rexray/ebs:/data/db mongo
+$ docker run -d --name mongo -v rexray/ebs:/data/db mongo
+```
+In earlier step, private IP address was entered to connect with Mongo DB container. But if both the containers will be in same network then they can communicate by container names.
+Steps to create and configure containers in the same network are below:
+```bash
+$ docker network create -d bridge appnet
+$ docker network connect appnet mongo
+$ docker network connect appnet springmongoapp
 ```
