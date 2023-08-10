@@ -296,11 +296,11 @@ $ docker service ps uber-svc
 Docker runs applications inside of containers, and these need to communicate over lots of different networks. This means Docker needs strong networking capabilities.
 Docker networking is based on an open-source pluggable architecture called the Container Network Model (CNM).
 Different types of Networks are:
-bridge
-host
-overlay
-IPvLAN
-macvlan
+ * bridge
+ * host
+ * overlay
+ * IPvLAN
+ * macvlan
 
 ```bash
 $ docker network ls
