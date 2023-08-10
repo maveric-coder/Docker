@@ -315,8 +315,13 @@ $ docker network inspect localnet --format '{{json .Containers}}'
 $ docker container run -it --name c2 \
   --network localnet \
   alpine sh
-
 ```
+To attach a running container to a network
+```bash
+$ docker network connect <network_name> <container_ID>
+$ docker network disconnect <network_name> <container_ID>
+```
+
 From within the “c2” container, ping the “c1” container by name.
 ```bash
 $ ping c1
