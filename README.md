@@ -301,9 +301,18 @@ Different types of Networks are:
  * overlay
  * IPvLAN
  * macvlan
+<br>
+Docker ships with several built-in drivers, known as native drivers or local drivers. On Linux they include; bridge, overlay, and macvlan. On Windows they include; nat, overlay, transparent, and l2bridge.
 
 ```bash
 $ docker network ls
+$ docker network inspect bridge
+
+$ ip link show docker0
+```
+The default “bridge” network, on all Linux-based Docker hosts, maps to an underly- ing Linux bridge in the kernel called “docker0”. 
+```bash
+$ docker network inspect bridge | grep bridge.name
 
 $ docker network create -d bridge localnet
 $ docker container run -d --name c1 \
@@ -316,17 +325,13 @@ $ docker container run -it --name c2 \
   --network localnet \
   alpine sh
 ```
-To attach a running container to a network
-```bash
-$ docker network connect <network_name> <container_ID>
-$ docker network disconnect <network_name> <container_ID>
-```
 
 From within the “c2” container, ping the “c1” container by name.
 ```bash
 $ ping c1
 ```
 
+Port mappings let you map a container port to a port on the Docker host. Any traffic hitting the Docker host on the configured port will be directed to the container. This is mapped to port 5000 on the host’s 10.0.0.15 interface. The end result is all traffic hitting the host on 10.0.0.15:5000 being redirected to the container on port 80.
 An example of mapping port 80 on a container running a web server, to port 5000 on the Docker host.
 ```bash
 $ docker container run -d --name web \
@@ -336,7 +341,12 @@ $ docker container run -d --name web \
 ```
 `localhost or 127.0.0.1.`
   nginx
-
+  
+To attach a running container to a network
+```bash
+$ docker network connect <network_name> <container_ID>
+$ docker network disconnect <network_name> <container_ID>
+```
 ## Docker Volumes
 
 The recommended way to persist data in containers is with volumes.
