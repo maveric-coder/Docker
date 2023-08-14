@@ -31,8 +31,8 @@ $ docker version ## to check docker version
 It’s useful to think of a Docker image as an object that contains an OS filesystemand an application. If you work in operations, it’s like a virtual machine template.
 <br>Run the ```docker image ls ``` command on your Docker host.
 ```bash
-$ docker image ls or docker images ## to check the list of images
-$ docker search python:3.7  ## to serach the particularly image
+$ docker image ls or docker images
+$ docker search python:3.7
 $ docker search registry
 ```
 To filter out and see only few columns
@@ -51,13 +51,13 @@ $ docker images nginx
 ```bash
 $ docker image pull nginx:latest
 $ docker image pull nginx:alpine
-$ docker image pull --all-tags nginx ## it will pull all nginx images
+$ docker image pull --all-tags nginx
 ```
 ***Clean up***
 ```bash
 $ docker images
 $ docker image rm nginx:l-alpine-perl
-$ docker rmi 38049a7d921n293423  ## to delete image
+$ docker rmi 38049a7d921n293423
 $ docker rmi 3849a7sdf9sdf923f9 --force
 
 ```
@@ -80,7 +80,7 @@ To execute any command
 ```bash
 $ docker exec -it my_busybox pwd 
 $ docker exec -it ubuntu1 bash
-$ docker attach ubuntu1   ## to attach the shell of the contianer
+$ docker attach ubuntu1
 $ docker container run --name percy -it ubuntu:latest /bin/bash
 $ docker container run --name neversaydie -it --restart always alpine sh
 $ docker container run -d --name always \
@@ -98,10 +98,10 @@ $ docker container run -itd --name cont_nginx_A -p nginx:latest
 ***Remove Containers***
 ```bash
 $ docker ps-a   ## list all the contianers
-$ docker container rm 672fc9dasd83h3j393    ## to delete container by using container id
-$ docker container rm my_busybox --force    ## to delete container by using container name
-$ docker container prune     ## this cmd will delete all containers which are created ( don't use this cmd)
-$ docker rm $( docker ps -aq)  ##This will return container ID while removing them
+$ docker container rm 672fc9dasd83h3j393
+$ docker container rm my_busybox --force
+$ docker container prune
+$ docker rm $( docker ps -aq)
 ```
 
 ## Containerizing an app
