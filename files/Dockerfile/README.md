@@ -25,10 +25,10 @@ Firstly, we'll add a run instruction to our Dockerfile:
 FROM alpine
 ADD log-event.sh /
 RUN ["/log-event.sh", "image created"]
-Copy
 ```
 
 Secondly, let's build our image with:
+
 ```bash
 docker build -t myimage .
 ```
@@ -42,3 +42,18 @@ docker run myimage cat log.txt
 When listing the contents of the file, we'll see an output like this:
 
 `Thu Aug 24 18:14:56 UTC 2023 image created`
+
+If we run the container several times, we'll see that the date in our log file doesn't change. This makes sense because the run step executes at image build time, not at the container runtime.
+
+## CMD
+With the **cmd** instruction, we can specify a default command that executes when the container is starting. Let's add a cmd entry to our Dockerfile and see how it works:
+```Dockerfile
+FROM alpine
+ADD log-event.sh /
+RUN ["/log-event.sh", "image created"]
+CMD ["/log-event.sh", "container started"]
+```
+Let's build the image again with added command and the build a container to see the output.
+```bash
+$ docker run myimage
+```
