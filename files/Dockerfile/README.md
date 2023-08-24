@@ -57,3 +57,24 @@ Let's build the image again with added command and the build a container to see 
 ```bash
 $ docker run myimage
 ```
+`Thu Aug 24 18:14:56 UTC 2023 image created`
+`Thu Aug 24 18:29:16 UTC 2023 container started`
+
+If we run this multiple times, we'll see that the image created entry stays the same. But the container started entry updates with every run. This shows how cmd indeed executes every time the container starts.
+
+Notice we've used a slightly different docker run command to start our container this time. Let's see what happens if we run the same command as before:
+```bash
+$ docker run myimage cat log.txt
+```
+`Thu Aug 24 18:14:56 UTC 2023 image created`
+This time the cmd specified in the Dockerfile is ignored. That's because we have specified arguments to the docker run command.
+
+Let's move on now and see what happens if we have more than one cmd entry in the Dockerfile. Let's add a new entry that will display another message:
+```Dockerfile
+FROM alpine
+ADD log-event.sh /
+RUN ["/log-event.sh", "image created"]
+CMD ["/log-event.sh", "container started"]
+CMD ["/log-event.sh", "container started"]
+```
+After building the image and running the container again, we'll find the following output:
