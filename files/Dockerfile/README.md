@@ -91,5 +91,29 @@ Let's replace the cmd entry in our Dockerfile with entrypoint:
 FROM alpine
 ADD log-event.sh /
 RUN ["/log-event.sh", "image created"]
-ENTRYPOINT ["/log-event.sh", "container started"]
+ENTRYPOINT ["/log-event.sh"]
 ```
+build the image and run the container by providing custom commmad
+```bash
+docker run myimage container running now
+```
+`Thu Aug 24 18:14:56 UTC 2023 image created`
+`Thu Aug 24 18:43:22 UTC 2023 container running now`
+
+We can see how entrypoint behaves similarly to cmd. And in addition, it allows us to customize the command executed at startup.
+
+Like with cmd, in case of multiple entrypoint entries, only the last one is considered.
+
+## Interactions Between cmd and entrypoint
+We have used both cmd and entrypoint to define the command executed when running the container. Let's now move on and see how to use cmd and entrypoint in combination.
+
+One such use-case is to define default arguments for entrypoint. Let's add a cmd entry after entrypoint in our Dockerfile:
+
+```Dockerfile
+FROM alpine
+ADD log-event.sh /
+RUN ["/log-event.sh", "image created"]
+ENTRYPOINT ["/log-event.sh"]
+CMD ["container started"]
+```
+Now, let's run our container without providing any arguments, and with the defaults specified in cmd:
