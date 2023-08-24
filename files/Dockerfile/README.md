@@ -26,12 +26,19 @@ FROM alpine
 ADD log-event.sh /
 RUN ["/log-event.sh", "image created"]
 Copy
-Secondly, let's build our image with:
+```
 
+Secondly, let's build our image with:
+```bash
 docker build -t myimage .
-Copy
+```
+
 Now we expect to have a Docker image containing a log.txt file with one image created line inside. Let's check this by running a container based on the image:
 
+```bash
 docker run myimage cat log.txt
-Copy
+```
+
 When listing the contents of the file, we'll see an output like this:
+
+`Thu Aug 24 18:14:56 UTC 2023 image created`
