@@ -117,3 +117,16 @@ ENTRYPOINT ["/log-event.sh"]
 CMD ["container started"]
 ```
 Now, let's run our container without providing any arguments, and with the defaults specified in cmd:
+
+```bash
+docker run myimage
+```
+`Thu Aug 24 18:14:56 UTC 2023 image created`
+`Thu Aug 24 18:52:48 UTC 2023 container started`
+
+We can also override them if we choose so:
+```bash
+docker run myimage custom event
+```
+`Thu Aug 24 18:14:56 UTC 2023 image created`
+`Thu Aug 24 18:53:18 UTC 2023 ccustom event`
