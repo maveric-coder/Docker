@@ -78,3 +78,18 @@ CMD ["/log-event.sh", "container started"]
 CMD ["/log-event.sh", "container started"]
 ```
 After building the image and running the container again, we'll find the following output:
+`Thu Aug 24 18:14:56 UTC 2023 image created`
+`Thu Aug 24 18:31:14 UTC 2023 container started`
+
+As we can see, the container started entry is not present, only the container running is. That's because only the last cmd is invoked if more than one is specified.
+
+## Entrypoint
+As we saw above, cmd is ignored if passing any arguments when starting the container. What if we want more flexibility? Let's say we want to customize the appended text and pass it as an argument to the docker run command. For this purpose, let's use entrypoint. We'll specify the default command to run when the container starts. Moreover, we're now able to provide extra arguments.
+
+Let's replace the cmd entry in our Dockerfile with entrypoint:
+```Dockerfile
+FROM alpine
+ADD log-event.sh /
+RUN ["/log-event.sh", "image created"]
+ENTRYPOINT ["/log-event.sh", "container started"]
+```
