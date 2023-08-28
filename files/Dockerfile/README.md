@@ -55,7 +55,7 @@ CMD ["/log-event.sh", "container started"]
 ```
 Let's build the image again with added command and the build a container to see the output.
 ```bash
-$ docker run myimage
+ docker run myimage
 ```
 `Thu Aug 24 18:14:56 UTC 2023 image created`
 `Thu Aug 24 18:29:16 UTC 2023 container started`
@@ -64,7 +64,7 @@ If we run this multiple times, we'll see that the image created entry stays the 
 
 Notice we've used a slightly different docker run command to start our container this time. Let's see what happens if we run the same command as before:
 ```bash
-$ docker run myimage cat log.txt
+ docker run myimage cat log.txt
 ```
 `Thu Aug 24 18:14:56 UTC 2023 image created`
 This time the cmd specified in the Dockerfile is ignored. That's because we have specified arguments to the docker run command.
