@@ -73,8 +73,8 @@ $ docker container start cc_busybox_A
 $ docker container stop cc_busybox_B
 $ docker container restart --time 5 cc_busybox_A
 $ docker container rename cc_busybox_A my_busybox
-$ docker container run -d --name webserver -p 80:8080 \
-  nigelpoulton/pluralsight-docker-ci
+$ docker container run -d --name webserver -p 80:80 \
+  nginx
 
 ```
 To execute any command
@@ -82,7 +82,7 @@ To execute any command
 $ docker exec -it my_busybox pwd 
 $ docker exec -it ubuntu1 bash
 $ docker attach ubuntu1
-$ docker container run --name percy -it ubuntu:latest /bin/bash
+$ docker container run --name ubuntu -it ubuntu:latest /bin/bash
 $ docker container run --name neversaydie -it --restart always alpine sh
 $ docker container run -d --name always \
   --restart always \
@@ -93,8 +93,8 @@ $ docker container run -d --name unless-stopped \
 ```
 ***Port Mapping***
 ```bash
-$ docker container run -itd --name cont_nginx -p 8080:80 /tcp nginx:latest
-$ docker container run -itd --name cont_nginx_A -p nginx:latest
+$ docker container run -itd --name nginx -p 8080:80 /tcp nginx:latest
+$ docker container run -itd --name nginx_A -p nginx:latest
 ```
 ***Remove Containers***
 ```bash
