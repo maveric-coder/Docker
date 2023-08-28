@@ -73,8 +73,7 @@ $ docker container start cc_busybox_A
 $ docker container stop cc_busybox_B
 $ docker container restart --time 5 cc_busybox_A
 $ docker container rename cc_busybox_A my_busybox
-$ docker container run -d --name webserver -p 80:80 \
-  nginx
+$ docker container run -d --name webserver -p 80:80 nginx
 
 ```
 To execute any command
