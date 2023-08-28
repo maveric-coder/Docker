@@ -26,82 +26,82 @@ When you install Docker, you get two major components:<br>
 
 You can use the ``` docker version ```command to test that the client and daemon (server) are running and talking to each other.
 ```bash
-$ docker version ## to check docker version
+ docker version ## to check docker version
 ```
 ## Images
 It’s useful to think of a Docker image as an object that contains an OS filesystemand an application. If you work in operations, it’s like a virtual machine template.
 <br>Run the ```docker image ls ``` command on your Docker host.
 ```bash
-$ docker image ls or docker images
-$ docker search python:3.7
-$ docker search registry
+ docker image ls or docker images
+ docker search python:3.7
+ docker search registry
 ```
 To filter out and see only few columns
 ```bash
-$ docker search --filter "is-official=true" registry
-$ docker search alpine --filter "is-automated=true"
-$ docker search --format "{{.Name}}\t{{.Description}}\t{{.IsOfficial}}" registry
+ docker search --filter "is-official=true" registry
+ docker search alpine --filter "is-automated=true"
+ docker search --format "{{.Name}}\t{{.Description}}\t{{.IsOfficial}}" registry
 ```
 To list out all the present images in the node:
 ```bash
-$ docker images  
-$ docker images ls
-$ docker images nginx
+ docker images  
+ docker images ls
+ docker images nginx
 ```
 ***To pull an Image***
 ```bash
-$ docker image pull nginx:latest
-$ docker image pull nginx:alpine
-$ docker image pull --all-tags nginx
+ docker image pull nginx:latest
+ docker image pull nginx:alpine
+ docker image pull --all-tags nginx
 ```
 ***Clean up***
 ```bash
-$ docker images
-$ docker image rm nginx:l-alpine-perl
-$ docker rmi 38049a7d921n293423
-$ docker rmi 3849a7sdf9sdf923f9 --force
+ docker images
+ docker image rm nginx:l-alpine-perl
+ docker rmi 38049a7d921n293423
+ docker rmi 3849a7sdf9sdf923f9 --force
 
 ```
 ## Starting a new container
 <br>The most common way of starting containers is using the Docker CLI. The following
 docker container run command will start a simple new container.
 ```bash
-$ docker container create -it --name cc_busybox_A busybox:latest  
-$ docker container run -itd --rm --name cc_busybox_B busybox:latest
-$ docker ps -a
-$ docker container start cc_busybox_A
-$ docker container stop cc_busybox_B
-$ docker container restart --time 5 cc_busybox_A
-$ docker container rename cc_busybox_A my_busybox
-$ docker container run -d --name webserver -p 80:80 nginx
+ docker container create -it --name cc_busybox_A busybox:latest  
+ docker container run -itd --rm --name cc_busybox_B busybox:latest
+ docker ps -a
+ docker container start cc_busybox_A
+ docker container stop cc_busybox_B
+ docker container restart --time 5 cc_busybox_A
+ docker container rename cc_busybox_A my_busybox
+ docker container run -d --name webserver -p 80:80 nginx
 
 ```
 To execute any command
 ```bash
-$ docker exec -it my_busybox pwd 
-$ docker exec -it ubuntu1 bash
-$ docker attach ubuntu1
-$ docker container run --name ubuntu -it ubuntu:latest /bin/bash
-$ docker container run --name neversaydie -it --restart always alpine sh
-$ docker container run -d --name always \
+ docker exec -it my_busybox pwd 
+ docker exec -it ubuntu1 bash
+ docker attach ubuntu1
+ docker container run --name ubuntu -it ubuntu:latest /bin/bash
+ docker container run --name neversaydie -it --restart always alpine sh
+ docker container run -d --name always \
   --restart always \
   alpine sleep 1d
-$ docker container run -d --name unless-stopped \
+ docker container run -d --name unless-stopped \
   --restart unless-stopped \
   alpine sleep 1d
 ```
 ***Port Mapping***
 ```bash
-$ docker container run -itd --name nginx -p 8080:80 /tcp nginx:latest
-$ docker container run -itd --name nginx_A -p nginx:latest
+ docker container run -itd --name nginx -p 8080:80 /tcp nginx:latest
+ docker container run -itd --name nginx_A -p nginx:latest
 ```
 ***Remove Containers***
 ```bash
-$ docker ps-a   ## list all the contianers
-$ docker container rm 672fc9dasd83h3j393
-$ docker container rm my_busybox --force
-$ docker container prune
-$ docker rm $( docker ps -aq)
+ docker ps-a   ## list all the contianers
+ docker container rm 672fc9dasd83h3j393
+ docker container rm my_busybox --force
+ docker container prune
+ docker rm $( docker ps -aq)
 ```
 
 ## Containerizing an app
@@ -132,12 +132,12 @@ The Dockerfile has two main purposes:<br>
 
 ***Containerize the app/build the image***
 ```bash
-$ docker image build -t web:latest .
+ docker image build -t web:latest .
 ```
 
 ***Run the app***
 ```bash
-$ docker container run -d --name c1 \
+ docker container run -d --name c1 \
   -p 80:8080 \
   web:latest
 ```
@@ -158,7 +158,7 @@ CMD ["catalina.sh", "run"]
 Paste the above mentioned code in Dockerfile
 
 And build the image using command
-`$ docker build -t mywebapp .`
+` docker build -t mywebapp .`
 
 Run a container using the image
 `$docker run -p 8080:8080 mywebapp`
@@ -168,7 +168,7 @@ Instead of gluing everything together with scripts and long docker commands, Doc
 Once the app is deployed, you can manage its entire lifecycle with a simple set of commands. You can even store and manage the configuration file in a version control system!
 
 ```bash
-$ docker-compose --version
+ docker-compose --version
 ```
 
 ***Deploying an app with Compose***
@@ -193,8 +193,8 @@ Let’s quickly describe each file:<br>
  Compose to bring the app up.<br>
  
  ```bash
- $ docker-compose up &
- $ docker-compose -f prod-equus-bass.yml up
+  docker-compose up &
+  docker-compose -f prod-equus-bass.yml up
  ```
  
  
@@ -212,18 +212,18 @@ The following steps will put mgr1 into swarm mode and initialize a new swarm. It
 
 1. Log on to mgr1 and initialize a new swarm
 ```bash
-$ docker swarm init \
+ docker swarm init \
   --advertise-addr 10.0.0.1:2377 \
   --listen-addr 10.0.0.1:2377
   
-$ docker swarm join-token worker
-$ docker swarm join-token manager
+ docker swarm join-token worker
+ docker swarm join-token manager
   
  ``` 
  
  To join:
  ```bash
-$ docker swarm join \
+ docker swarm join \
   --token SWMTKN-1-0uahebax...ue4hv6ps3p \  
   10.0.0.1:2377 \
   --advertise-addr 10.0.0.2:2377 \
@@ -232,13 +232,13 @@ $ docker swarm join \
  
 List the nodes in the swarm by running docker node ls from any of the manager nodes in the swarm.
 ```bash
-$ docker node ls
+ docker node ls
 ```
 
 ***Swarm services***
 `docker service create` to tell Docker we are declaring a new service, and we used the `--name` flag to name it `web-fe`. We told Docker to map `port 8080 `on every node in the swarm to 8080 inside of each service replica. Next, we used the `-- replicas` flag to tell Docker that there should always be 5 replicas of this service.
 ```bash
-$ docker service create --name web-fe \
+ docker service create --name web-fe \
   -p 8080:8080 \
   --replicas 5 \
   nigelpoulton/pluralsight-docker-ci
@@ -246,20 +246,20 @@ $ docker service create --name web-fe \
 
 *Viewing and inspecting services*
 ```bash
-$ docker service ls
-$ docker service ps web-fe
-$ docker service inspect --pretty web-fe
+ docker service ls
+ docker service ps web-fe
+ docker service inspect --pretty web-fe
 ```
 
 ***Scaling a service***
 ```bash
-$ docker service scale web-fe=10
-$ docker service scale web-fe=5
+ docker service scale web-fe=10
+ docker service scale web-fe=5
 ```
 
 ***Removing a service***
 ```bash
-$ docker service rm web-fe
+ docker service rm web-fe
 ```
 
 Be careful using the docker service rm command, as it deletes all service replicas without asking for confirmation.
@@ -271,23 +271,23 @@ This creates a new overlay network called “uber-net” that we’ll be able to
 network that we can place containers on, and all containers on it will be able to communicate. This works even if the Docker hosts the containers are running on are
 on different underlying networks. Basically, the overlay network creates a new layer 2 container network on top of potentially multiple different underlying networks.
 ```bash
-$ docker network create -d overlay uber-net
-$ docker network ls
+ docker network create -d overlay uber-net
+ docker network ls
 
-$ docker service create --name uber-svc \
+ docker service create --name uber-svc \
   --network uber-net \
   -p 80:80 --replicas 12 \
   nigelpoulton/tu-demo:v1
   
-$ docker service ls
-$ docker service ps uber-svc
+ docker service ls
+ docker service ps uber-svc
 
-$ docker service update \
+ docker service update \
   --image nigelpoulton/tu-demo:v2 \
   --update-parallelism 2 \
   --update-delay 20s uber-svc
   
-$ docker service ps uber-svc
+ docker service ps uber-svc
   
 ```
 
@@ -305,23 +305,23 @@ Different types of Networks are:
 Docker ships with several built-in drivers, known as native drivers or local drivers. On Linux they include; bridge, overlay, and macvlan. On Windows they include; nat, overlay, transparent, and l2bridge.
 
 ```bash
-$ docker network ls
-$ docker network inspect bridge
+ docker network ls
+ docker network inspect bridge
 
 $ ip link show docker0
 ```
 The default “bridge” network, on all Linux-based Docker hosts, maps to an underly- ing Linux bridge in the kernel called “docker0”. 
 ```bash
-$ docker network inspect bridge | grep bridge.name
+ docker network inspect bridge | grep bridge.name
 
-$ docker network create -d bridge localnet
-$ docker container run -d --name c1 \
+ docker network create -d bridge localnet
+ docker container run -d --name c1 \
   --network localnet \
   alpine sleep 1d
   
-$ docker network inspect localnet --format '{{json .Containers}}'
+ docker network inspect localnet --format '{{json .Containers}}'
 
-$ docker container run -it --name c2 \
+ docker container run -it --name c2 \
   --network localnet \
   alpine sh
 ```
@@ -334,7 +334,7 @@ $ ping c1
 Port mappings let you map a container port to a port on the Docker host. Any traffic hitting the Docker host on the configured port will be directed to the container. This is mapped to port 5000 on the host’s 10.0.0.15 interface. The end result is all traffic hitting the host on 10.0.0.15:5000 being redirected to the container on port 80.
 An example of mapping port 80 on a container running a web server, to port 5000 on the Docker host.
 ```bash
-$ docker container run -d --name web \
+ docker container run -d --name web \
   --network localnet \
   --publish 5000:80 \
   
@@ -344,8 +344,8 @@ $ docker container run -d --name web \
   
 To attach a running container to a network
 ```bash
-$ docker network connect <network_name> <container_ID>
-$ docker network disconnect <network_name> <container_ID>
+ docker network connect <network_name> <container_ID>
+ docker network disconnect <network_name> <container_ID>
 ```
 ## Docker Volumes
 
@@ -354,16 +354,16 @@ At a high-level, you create a volume, then you create a container, and you mount
 
 Use the following command to create a new volume called myvol.
 ```bash 
-$ docker volume create myvol
-$ docker volume inspect myvol
+ docker volume create myvol
+ docker volume inspect myvol
 ```
 By default, Docker creates new volumes with the built-in local driver. As the name suggests, local volumes are only available to containers on the node they’re created on. Use the -d flag to specify a different driver.
 
 There are two ways to detele docker volumes i.e. `docker volume prune` and `docker volume rm`
 To attach the created *Volume* to a container, we willl execute below commands.
 ```bash
-$ docker container run -dit --name voltainer \ --mount source=myvol,target=/vol \ alpine
-$ docker run --name MyJenkins1 -v myvol1:/var/jenkins_home -p 8080:8080 -p 50000:50000 jenkins
+ docker container run -dit --name voltainer \ --mount source=myvol,target=/vol \ alpine
+ docker run --name MyJenkins1 -v myvol1:/var/jenkins_home -p 8080:8080 -p 50000:50000 jenkins
 ```
 #### Spring boot mongo app
 
@@ -377,29 +377,29 @@ $ mvn clean package
 By executing the above commands, in the target folder `.jar` file will be available as the artifact ready to be deployed.
 The `Dockerfile` present in the folder contains info and commands to build the image to run the created artifact.Below mentioned command will build an image.
 ```bash
-$ docker build -t anand2909/spring-boot-mongo .
+ docker build -t anand2909/spring-boot-mongo .
 ```
-To check the build image run `$ docker images` and inspect the image by running `$docker image inspect anand2909/spring-boot-mongo`.
+To check the build image run ` docker images` and inspect the image by running `$docker image inspect anand2909/spring-boot-mongo`.
 Create an App container by
 ```bash
-$ docker run -d --name springmongoapp -p 8080:8080 anand2909/spring-boot-mongo
+ docker run -d --name springmongoapp -p 8080:8080 anand2909/spring-boot-mongo
 ```
 Let's create a Mongo container to enter and process the entered data.
 ```bash
-$ docker run -d --name mongo mongo
+ docker run -d --name mongo mongo
 ```
 Now if we will open the webpage for the application we will still not be able to connect as we did not do the needed configuration.
 Delete the existing app container and recreate by mentioned commands
 ```bash
-$ docker rm -f <container_id>
-$ docker run -d --name springmongoapp -p 8080:8080 anand2909/spring-boot-mongo
+ docker rm -f <container_id>
+ docker run -d --name springmongoapp -p 8080:8080 anand2909/spring-boot-mongo
 java -Dspring.data.mongodb.uri=mongodb://<Mongo_container_IP>:27017/spring-mongo -Djava.security.egd=file:/dev/./urandom -jar ./spring-boot-mongo.jar
 ```
 The date being entered will be stored now but it will be only till the Mongo DB is present in the server. Once the Mongo container is deleted the saved data will be flushed out. Docker volume will make the date persistent and can be attached to other containers.
 Delete the existing mongo container and create a new Mongo container with a new volume.
 ```bash
-$ docker volume create mongobckp
-$ docker run -d --name mongo -v mongobckp:/data/db mongo
+ docker volume create mongobckp
+ docker run -d --name mongo -v mongobckp:/data/db mongo
 ```
 
 There are two types of  volumes:
@@ -408,14 +408,14 @@ There are two types of  volumes:
 
 To use the network volume, [REX-RAY](https://rexray.readthedocs.io/en/v0.9.0/user-guide/docker-plugins/) can be used
 ```bash
-$ docker plugin install rexray/ebs   EBS_ACCESSKEY=AKIA2NNCZ7U3DFCHL7N4   EBS_SECRETKEY=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
-$ docker volume create --driver rexray/ebs --name ebsvol
-$ docker run -d --name mongo -v rexray/ebs:/data/db mongo
+ docker plugin install rexray/ebs   EBS_ACCESSKEY=AKIA2NNCZ7U3DFCHL7N4   EBS_SECRETKEY=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
+ docker volume create --driver rexray/ebs --name ebsvol
+ docker run -d --name mongo -v rexray/ebs:/data/db mongo
 ```
 In earlier step, private IP address was entered to connect with Mongo DB container. But if both the containers will be in same network then they can communicate by container names.
 Steps to create and configure containers in the same network are below:
 ```bash
-$ docker network create -d bridge appnet
-$ docker network connect appnet mongo
-$ docker network connect appnet springmongoapp
+ docker network create -d bridge appnet
+ docker network connect appnet mongo
+ docker network connect appnet springmongoapp
 ```
