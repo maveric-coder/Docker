@@ -173,15 +173,15 @@ $ docker-compose --version
 ```
 
 ***Deploying an app with Compose***
- you’ll need the following 4 files from https://github.com/nigelpoulton/counter-app:<br>
+ We'll use the following 4 files from https://github.com/maveric-coder/dockerCompose-Counter-App.git:<br>
 • Dockerfile<br>
 • app.py<br>
 • requirements.txt<br>
 • docker-compose.yml<br>
 Clone the Git repo locally.<br>
 ```bash
-$ git clone https://github.com/nigelpoulton/counter-app.git
-$ cd counter-app
+$ git clone https://github.com/maveric-coder/dockerCompose-Counter-App.git
+$ cd dockerCompose-Counter-App
 $ ls
 
 ```
