@@ -37,8 +37,7 @@ You can use the ``` docker version ```command to test that the client and daemon
 ```
 ## Images
 Docker Images are made up of multiple layers of read-only filesystems, these filesystems are called a Docker file, they are just text file with a set of pre-written commands.
-For every text written or instructions given in docker file a layer is created and is placed on top of another layer forming a docker image, which is future used to create docker container.
-<br>
+For every text written or instructions given in docker file a layer is created and is placed on top of another layer forming a docker image, which is future used to create docker container.<br>
 Run the ```docker image ls ``` command on your Docker host.
 ```bash
  docker image ls or docker images
