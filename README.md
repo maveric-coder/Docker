@@ -433,7 +433,8 @@ Steps to create and configure containers in the same network are below:
 
 ## ENV vs ARG
 
-**ARG (build time)**
+**ARG (build time):**
+
 Variables defined through ARG are also known as build-time variables. They are only available from the moment they are ‘announced’ in the Dockerfile with an ARG instruction in the Dockerfile.
 
 Running containers can’t access the values of ARG variables. So anything you run via CMD and ENTRYPOINT instructions won’t see those values by default.
@@ -445,9 +446,10 @@ ARG some_value
 ```
 Even though ARG values are not available to the container, they can easily be inspected through the Docker CLI after an image is built. For example by running docker history on an image. ARG and ENV are a poor choice for sensitive data if untrusted users have access to your images.
 
-**ENV (build time and run time)**
+**ENV (build time and run time):**
+
 ENV variables are available both during the build and to the future running container. In the Dockerfile, they are usable as soon as you introduce them with an ENV instruction.
 
 Unlike ARG, ENV values are accessible by containers started from the final image. ENV values can be overridden when starting a container, more on that below.
-
+<img src =
 
