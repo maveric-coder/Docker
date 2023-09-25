@@ -4,7 +4,7 @@
 
 * [Introduction](#hello-containers)
 * [Images](#images)
-* [Containerizing an app](#containerizing-an-app)
+* [Container](#container)
   * [Containerize a single-container app](#containerize-a-single-container-app)
   * [Deploying Apps with Docker Compose](#deploying-apps-with-docker-compose)
   * [Docker Swarm](#docker-swarm)
@@ -71,7 +71,10 @@ To list out all the present images in the node:
  docker rmi 3849a7sdf9sdf923f9 --force
 
 ```
-## Starting a new container
+## Container
+A container is an isolated application, it is built from one or more images, and acts as an entire package system which includes all the libraries and dependencies required for an application to run. Docker containers come without OS, they use the Host OS for functionality, hence it is a more portable, efficient and lightweight system that comes with a guarantee that the software will run in any environment.
+
+### Starting a new container
 <br>The most common way of starting containers is using the Docker CLI. The following
 docker container run command will start a simple new container.
 ```bash
