@@ -2,15 +2,15 @@
 
 ## Index
 
-* [Introduction](https://github.com/maveric-coder/Docker#hello-containers)
-* [Images](https://github.com/maveric-coder/Docker#images)
-* [Containerizing an app](https://github.com/maveric-coder/Docker-Kubernetes#containerizing-an-app)
-  * [Containerize a single-container app](https://github.com/maveric-coder/Docker#containerize-a-single-container-app)
-  * [Deploying Apps with Docker Compose](https://github.com/maveric-coder/Docker#deploying-apps-with-docker-compose)
-  * [Docker Swarm](https://github.com/maveric-coder/Docker#docker-swarm)
-* [Docker Networking](https://github.com/maveric-coder/Docker#docker-networking)
-* [Docker Volume](https://github.com/maveric-coder/Docker#docker-volumes)
-  * [Spring boot mongo app](https://github.com/maveric-coder/Docker#spring-boot-mongo-app)
+* [Introduction](#hello-containers)
+* [Images](#images)
+* [Containerizing an app](#containerizing-an-app)
+  * [Containerize a single-container app](#containerize-a-single-container-app)
+  * [Deploying Apps with Docker Compose](#deploying-apps-with-docker-compose)
+  * [Docker Swarm](#docker-swarm)
+* [Docker Networking](#docker-networking)
+* [Docker Volume](#docker-volumes)
+  * [Spring boot mongo app](#spring-boot-mongo-app)
 * [Docker installation guide](https://docs.docker.com/engine/install/ubuntu/)
 
 <h2 align="left">Hello Containers!</h2>
@@ -419,3 +419,24 @@ Steps to create and configure containers in the same network are below:
  docker network connect appnet mongo
  docker network connect appnet springmongoapp
 ```
+
+## ENV vs ARG
+
+**ARG (build time)**
+Variables defined through ARG are also known as build-time variables. They are only available from the moment they are ‘announced’ in the Dockerfile with an ARG instruction in the Dockerfile.
+
+Running containers can’t access the values of ARG variables. So anything you run via CMD and ENTRYPOINT instructions won’t see those values by default.
+
+The benefit of ARG is, that Docker will expect to get values for those variables. At least, if you don’t specify a default value. If those values are not provided when running the build command, there will be an error message. Here is an example where Docker fill complain during build:
+```bash
+# no default value is specified!
+ARG some_value
+```
+Even though ARG values are not available to the container, they can easily be inspected through the Docker CLI after an image is built. For example by running docker history on an image. ARG and ENV are a poor choice for sensitive data if untrusted users have access to your images.
+
+**ENV (build time and run time)**
+ENV variables are available both during the build and to the future running container. In the Dockerfile, they are usable as soon as you introduce them with an ENV instruction.
+
+Unlike ARG, ENV values are accessible by containers started from the final image. ENV values can be overridden when starting a container, more on that below.
+
+
