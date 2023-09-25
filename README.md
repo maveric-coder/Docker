@@ -23,15 +23,14 @@ Docker is a software platform that allows you to build, test, and deploy applica
 * Increases operational efficiency
 * Increases developer productivity
 
-### The best place to play is [**Docker Playground**](https://labs.play-with-docker.com/)<br><br>
 The ***Docker Engine*** is the infrastructure plumbing software that runs and orchestrates containers.
-<br>
-<br>
+
 When you install Docker, you get two major components:<br>
 * Docker Client<br>
 * Docker Daemon (sometimes called “server” or “engine”)<br><br>
 <img src = "https://github.com/maveric-coder/Kubernetes/blob/main/files/img/docker%20engine.png" height="450" width="800"/>
-**DockerCLient:**
+
+**Docker Client:**
 
 Docker client is the key component in the Docker system which is used by users to interact with Docker, it provides a command-line interface (CLI). When we run the docker commands, the client sends these commands to the daemon ‘dockerd, to issue build, run, and stop the application.
 
