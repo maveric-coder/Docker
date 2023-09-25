@@ -14,7 +14,14 @@
 * [Docker installation guide](https://docs.docker.com/engine/install/ubuntu/)
 
 <h2 align="left">Hello Containers!</h2>
-For a long time, the big web-scale players, like Google, have been using container technologies to address the shortcomings of the VM model. In the container model, the container is roughly analogous to the VM. The major difference is that every container does not require its own full-blown OS. In fact, all containers on a single host share a single OS. This frees up huge amounts of system resources such as CPU, RAM, and storage. It also reduces potential licensing costs and reduces the overhead of OS patching and other maintenance. Net result: savings on the cap-ex and op-ex fronts. Containers are also fast to start and ultra-portable. Moving container workloads from your laptop, to the cloud, and then to VMs or bare metal in your data center, is a breeze.<br>
+Docker is a software platform that allows you to build, test, and deploy applications quickly. Docker packages software into standardized units called containers that have everything the software needs to run including libraries, system tools, code, and runtime. Using Docker, you can quickly deploy and scale applications into any environment and know your code will run.<br>
+
+* Enables consistent environment
+* Easy to use and maintain
+* Efficient use of the system resources
+* Increase in the rate of software delivery
+* Increases operational efficiency
+* Increases developer productivity
 
 ### The best place to play is [**Docker Playground**](https://labs.play-with-docker.com/)<br><br>
 The ***Docker Engine*** is the infrastructure plumbing software that runs and orchestrates containers.
@@ -29,8 +36,10 @@ You can use the ``` docker version ```command to test that the client and daemon
  docker version ## to check docker version
 ```
 ## Images
-It’s useful to think of a Docker image as an object that contains an OS filesystemand an application. If you work in operations, it’s like a virtual machine template.
-<br>Run the ```docker image ls ``` command on your Docker host.
+Docker Images are made up of multiple layers of read-only filesystems, these filesystems are called a Docker file, they are just text file with a set of pre-written commands.
+For every text written or instructions given in docker file a layer is created and is placed on top of another layer forming a docker image, which is future used to create docker container.
+<br>
+Run the ```docker image ls ``` command on your Docker host.
 ```bash
  docker image ls or docker images
  docker search python:3.7
