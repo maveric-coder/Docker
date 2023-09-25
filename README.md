@@ -28,9 +28,20 @@ The ***Docker Engine*** is the infrastructure plumbing software that runs and or
 <br>
 <br>
 When you install Docker, you get two major components:<br>
-• the Docker Client<br>
-• the Docker Daemon (sometimes called “server” or “engine”)<br><br>
-<img src = "https://github.com/maveric-coder/Kubernetes/blob/main/files/img/docker%20engine.png"/>
+* Docker Client<br>
+* Docker Daemon (sometimes called “server” or “engine”)<br><br>
+<img src = "https://github.com/maveric-coder/Kubernetes/blob/main/files/img/docker%20engine.png" height="450" width="800"/>
+**DockerCLient:**
+
+Docker client is the key component in the Docker system which is used by users to interact with Docker, it provides a command-line interface (CLI). When we run the docker commands, the client sends these commands to the daemon ‘dockerd, to issue build, run, and stop the application.
+
+**Docker Daemon:**
+
+The Docker daemon (dockerd) listens for Docker API requests and manages Docker objects such as images, containers, networks, and volumes. A daemon can also communicate with other daemons to manage Docker services.
+
+**Docker Registry:**
+
+A Docker registry stores Docker images. Docker Hub is a public registry that anyone can use, and Docker looks for images on Docker Hub by default. You can even run your own private registry.
 
 You can use the ``` docker version ```command to test that the client and daemon (server) are running and talking to each other.
 ```bash
