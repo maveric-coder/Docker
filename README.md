@@ -30,6 +30,7 @@ The ***Docker Engine*** is the infrastructure plumbing software that runs and or
 When you install Docker, you get two major components:<br>
 • the Docker Client<br>
 • the Docker Daemon (sometimes called “server” or “engine”)<br><br>
+<img src = "https://github.com/maveric-coder/Kubernetes/blob/main/files/img/docker%20engine.png"/>
 
 You can use the ``` docker version ```command to test that the client and daemon (server) are running and talking to each other.
 ```bash
