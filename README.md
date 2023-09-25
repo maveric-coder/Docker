@@ -451,5 +451,6 @@ Even though ARG values are not available to the container, they can easily be in
 ENV variables are available both during the build and to the future running container. In the Dockerfile, they are usable as soon as you introduce them with an ENV instruction.
 
 Unlike ARG, ENV values are accessible by containers started from the final image. ENV values can be overridden when starting a container, more on that below.
-<img src =
+
+<img src ="https://github.com/maveric-coder/Kubernetes/blob/main/files/img/docker_environment_build_args_overview.png" height="300" width="700"/>
 
