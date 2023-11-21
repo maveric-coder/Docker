@@ -201,9 +201,9 @@ Once the app is deployed, you can manage its entire lifecycle with a simple set 
 • docker-compose.yml<br>
 Clone the Git repo locally.<br>
 ```bash
-$ git clone https://github.com/maveric-coder/dockerCompose-Counter-App.git
-$ cd dockerCompose-Counter-App
-$ ls
+git clone https://github.com/maveric-coder/dockerCompose-Counter-App.git
+cd dockerCompose-Counter-App
+ls
 
 ```
 Let’s quickly describe each file:<br>
@@ -309,7 +309,7 @@ on different underlying networks. Basically, the overlay network creates a new l
   --update-parallelism 2 \
   --update-delay 20s uber-svc
   
- docker service ps uber-svc
+docker service ps uber-svc
   
 ```
 
@@ -327,30 +327,30 @@ Different types of Networks are:
 Docker ships with several built-in drivers, known as native drivers or local drivers. On Linux they include; bridge, overlay, and macvlan. On Windows they include; nat, overlay, transparent, and l2bridge.
 
 ```bash
- docker network ls
- docker network inspect bridge
+docker network ls
+docker network inspect bridge
 
-$ ip link show docker0
+ip link show docker0
 ```
 The default “bridge” network, on all Linux-based Docker hosts, maps to an underly- ing Linux bridge in the kernel called “docker0”. 
 ```bash
- docker network inspect bridge | grep bridge.name
+docker network inspect bridge | grep bridge.name
 
- docker network create -d bridge localnet
- docker container run -d --name c1 \
+docker network create -d bridge localnet
+docker container run -d --name c1 \
   --network localnet \
   alpine sleep 1d
   
- docker network inspect localnet --format '{{json .Containers}}'
+docker network inspect localnet --format '{{json .Containers}}'
 
- docker container run -it --name c2 \
+docker container run -it --name c2 \
   --network localnet \
   alpine sh
 ```
 
 From within the “c2” container, ping the “c1” container by name.
 ```bash
-$ ping c1
+ping c1
 ```
 
 Port mappings let you map a container port to a port on the Docker host. Any traffic hitting the Docker host on the configured port will be directed to the container. This is mapped to port 5000 on the host’s 10.0.0.15 interface. The end result is all traffic hitting the host on 10.0.0.15:5000 being redirected to the container on port 80.
@@ -392,9 +392,9 @@ To attach the created *Volume* to a container, we willl execute below commands.
 To understand better how making the data persistent actually works. Let's see through a live application deployment.
 Clone the repository to the server with docker, the same server should have maven installed as well (to build the application)
 ```bash
-$ git clone https://github.com/maveric-coder/spring-boot-mongo-docker.git
-$ cd spring-boot-mongo-docker
-$ mvn clean package
+git clone https://github.com/maveric-coder/spring-boot-mongo-docker.git
+cd spring-boot-mongo-docker
+mvn clean package
 ```
 By executing the above commands, in the target folder `.jar` file will be available as the artifact ready to be deployed.
 The `Dockerfile` present in the folder contains info and commands to build the image to run the created artifact.Below mentioned command will build an image.
