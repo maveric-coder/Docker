@@ -13,9 +13,6 @@
 <br>It is a text file that has all commands which need to be run for building a given image.
 
 4. Can you tell what is the functionality of a hypervisor?
-<br>A hypervisor is a software that makes virtualization happen because of which is sometimes referred to as the Virtual Machine Monitor. This divides the resources of the host system and allocates them to each guest environment installed.
-
-<br>This means that multiple OS can be installed on a single host system. Hypervisors are of 2 types:
-
-1. Native Hypervisor: This type is also called a Bare-metal Hypervisor and runs directly on the underlying host system which also ensures direct access to the host hardware which is why it does not require base OS.
-2. Hosted Hypervisor: This type makes use of the underlying host operating system which has the existing OS installed.
+<br>A hypervisor is a software that makes virtualization happen because of which is sometimes referred to as the Virtual Machine Monitor. This divides the resources of the host system and allocates them to each guest environment installed.<br><br>This means that multiple OS can be installed on a single host system. Hypervisors are of 2 types:
+    * **Native Hypervisor:** This type is also called a Bare-metal Hypervisor and runs directly on the underlying host system which also ensures direct access to the host hardware which is why it does not require base OS.
+    *  **Hosted Hypervisor:** This type makes use of the underlying host operating system which has the existing OS installed.
