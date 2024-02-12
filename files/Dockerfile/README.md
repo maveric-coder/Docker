@@ -75,6 +75,7 @@ Let's move on now and see what happens if we have more than one cmd entry in the
 ```Dockerfile
 FROM alpine
 ADD log-event.sh /
+RUN chmod 700 log-event.sh
 RUN ["/log-event.sh", "image created"]
 CMD ["/log-event.sh", "container started"]
 CMD ["/log-event.sh", "container started"]
