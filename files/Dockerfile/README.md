@@ -77,8 +77,8 @@ FROM alpine
 ADD log-event.sh /
 RUN chmod 700 log-event.sh
 RUN ["/log-event.sh", "image created"]
-CMD ["/log-event.sh", "container started"]
-CMD ["/log-event.sh", "container started"]
+CMD ["/log-event.sh", "container started1"]
+CMD ["/log-event.sh", "container started2"]
 ```
 After building the image and running the container again, we'll find the following output:
 `Thu Aug 24 18:14:56 UTC 2023 image created`
