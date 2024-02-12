@@ -115,6 +115,7 @@ One such use-case is to define default arguments for entrypoint. Let's add a cmd
 ```Dockerfile
 FROM alpine
 ADD log-event.sh /
+RUN chmod 700 log-event.sh
 RUN ["/log-event.sh", "image created"]
 ENTRYPOINT ["/log-event.sh"]
 CMD ["container started"]
