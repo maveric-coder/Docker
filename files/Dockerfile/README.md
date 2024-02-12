@@ -51,6 +51,7 @@ With the **cmd** instruction, we can specify a default command that executes whe
 ```Dockerfile
 FROM alpine
 ADD log-event.sh /
+RUN chmod 700 log-event.sh
 RUN ["/log-event.sh", "image created"]
 CMD ["/log-event.sh", "container started"]
 ```
