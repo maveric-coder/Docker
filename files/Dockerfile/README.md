@@ -82,7 +82,7 @@ CMD ["/log-event.sh", "container started2"]
 ```
 After building the image and running the container again, we'll find the following output:
 `Thu Aug 24 18:14:56 UTC 2023 image created`
-`Thu Aug 24 18:31:14 UTC 2023 container started`
+`Thu Aug 24 18:31:14 UTC 2023 container started2`
 
 As we can see, the container started entry is not present, only the container running is. That's because only the last cmd is invoked if more than one is specified.
 
