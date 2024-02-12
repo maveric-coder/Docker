@@ -93,6 +93,7 @@ Let's replace the cmd entry in our Dockerfile with entrypoint:
 ```Dockerfile
 FROM alpine
 ADD log-event.sh /
+RUN chmod 700 log-event.sh
 RUN ["/log-event.sh", "image created"]
 ENTRYPOINT ["/log-event.sh"]
 ```
