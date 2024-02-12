@@ -24,6 +24,7 @@ Firstly, we'll add a run instruction to our Dockerfile:
 ```Dockerfile
 FROM alpine
 ADD log-event.sh /
+RUN chmod 700 log-event.sh
 RUN ["/log-event.sh", "image created"]
 ```
 
