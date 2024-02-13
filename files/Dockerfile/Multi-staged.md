@@ -69,3 +69,28 @@ A few scenarios where this might be useful are:
 * Debugging a specific build stage
 * Using a `debug` stage with all debugging symbols or tools enabled, and a lean `production` stage
 * Using a `testing` stage in which your app gets populated with test data, but building for production using a different stage which uses real data
+
+## Use an external image as a stage
+When using multi-stage builds, you aren't limited to copying from stages you created earlier in your Dockerfile. You can use the COPY --from instruction to copy from a separate image, either using the local image name, a tag available locally or on a Docker registry, or a tag ID. The Docker client pulls the image if necessary and copies the artifact from there. The syntax is:
+
+```yml
+COPY --from=nginx:latest /etc/nginx/nginx.conf /nginx.conf
+```
+
+## Use a previous stage as a new stage
+You can pick up where a previous stage left off by referring to it when using the FROM directive. For example:
+
+```yml
+# syntax=docker/dockerfile:1
+
+FROM alpine:latest AS builder
+RUN apk --no-cache add build-base
+
+FROM builder AS build1
+COPY source1.cpp source.cpp
+RUN g++ -o /binary source.cpp
+
+FROM builder AS build2
+COPY source2.cpp source.cpp
+RUN g++ -o /binary source.cpp
+```
