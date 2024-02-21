@@ -465,3 +465,27 @@ Unlike ARG, ENV values are accessible by containers started from the final image
 
 <img src ="https://github.com/maveric-coder/Kubernetes/blob/main/files/img/docker_environment_build_args_overview.png" height="300" width="700"/>
 
+## Copy files from/to the container
+Syntax
+```sh
+docker container cp
+docker cp
+```
+Copy files/folders between a container and the local filesystem.
+
+Copy a local file into container
+```sh
+docker cp ./some_file CONTAINER:/work
+```
+Copy files from container to local path
+```sh
+docker cp CONTAINER:/var/logs/ /tmp/app_logs
+```
+Copy a file from container to stdout. Please note cp command produces a tar stream
+```sh
+docker cp CONTAINER:/var/logs/app.log - | tar x -O | grep "ERROR"
+```
+Example:
+```sh
+docker cp styles.css web1:/usr/share/nginx/html/
+```
