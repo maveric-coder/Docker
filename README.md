@@ -417,7 +417,7 @@ Delete the existing app container and recreate by mentioned commands
  docker run -d --name springmongoapp -p 8080:8080 anand2909/spring-boot-mongo
 java -Dspring.data.mongodb.uri=mongodb://<Mongo_container_IP>:27017/spring-mongo -Djava.security.egd=file:/dev/./urandom -jar ./spring-boot-mongo.jar
 ```
-The date being entered will be stored now but it will be only till the Mongo DB is present in the server. Once the Mongo container is deleted the saved data will be flushed out. Docker volume will make the date persistent and can be attached to other containers.
+The data being entered will be stored now but it will be only till the Mongo DB is present in the server. Once the Mongo container is deleted the saved data will be flushed out. Docker volume will make the date persistent and can be attached to other containers.
 Delete the existing mongo container and create a new Mongo container with a new volume.
 ```bash
  docker volume create mongobckp
