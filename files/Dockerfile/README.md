@@ -135,3 +135,40 @@ docker run myimage custom event
 ```
 `Thu Aug 24 18:14:56 UTC 2023 image created`
 `Thu Aug 24 18:53:18 UTC 2023 ccustom event`
+
+## Differences Between ADD and COPY
+
+## COPY instruction
+The COPY instruction is straightforward and does exactly what its name implies: It copies files and directories from a source within the build context to a destination layer in the Docker image.
+```Dockerfile
+COPY <src>... <dest>
+<src>: The source files or directories on the host.
+<dest>: The destination path inside the Docker image.
+```
+
+* Basic functionality: COPY only supports copying files and directories from the host file system. It does not support URLs or automatic unpacking of compressed files.
+* Security: Because COPY only handles local files, it tends to be more predictable and secure than ADD, reducing the risk of unintentionally introducing files from external sources.
+* Use case: Best used when you need to include files from your local build context into the Docker image without any additional processing.
+
+
+## ADD instruction
+The ADD instruction provides the same functionality that the COPY instruction does, but it also has additional functionality that, if misunderstood, can introduce complexity and potential security risks.
+
+```Dockerfile
+ADD <src>... <dest>
+
+ADD https://example.com/data.tar.gz /data
+ADD ./src /app/src
+<src>: The source files (directories or URLs).
+<dest>: The destination path inside the Docker image.
+```
+
+* Extended functionality: In addition to copying local files and directories from the build context, ADD provides the following advanced functionality:
+* Handle URLs: When supplied as a source, the file referenced by a URL will be downloaded to the current Docker image layer at the supplied destination path.
+* Extract archives: When supplied as a source, ADD will automatically unpack and expand archives to the current Docker image layer at the supplied destination path.
+* Flexibility vs. security: Although ADD is more flexible, it does introduce risk. Downloading external URLs into the build process may allow malicious code or contents to be brought into the process. Using ADD with archives may result in unintended consequences if you do not understand how it handles archives.
+* Use case: ADD should only be used when you need specific functionality that it provides and are willing to manage the potential security issues arising from this usage.
+
+### When to use COPY vs. ADD
+For most use cases, COPY is the better choice due to its simplicity and security. This instruction allows you to transfer files and directories from your local context into the Docker image you are building.<br>
+Use ADD only when you need the additional capabilities it offers, but be mindful of potential security implications.
