@@ -11,6 +11,8 @@
 * [Docker Networking](#docker-networking)
 * [Docker Volume](#docker-volumes)
   * [Spring boot mongo app](#spring-boot-mongo-app)
+* [ENV vs ARG](#env-vs-arg)
+* [Docker logs](#docker-logs)
 * [Docker installation guide](https://docs.docker.com/engine/install/ubuntu/)
 
 <h2 align="left">Hello Containers!</h2>
