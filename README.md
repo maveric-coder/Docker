@@ -510,3 +510,17 @@ docker info --format '{{.LoggingDriver}}'
 
 json-file
 ```
+
+### Configure the logging driver for a container
+When you start a container, you can configure it to use a different logging driver than the Docker daemon's default, using the --log-driver flag. If the logging driver has configurable options, you can set them using one or more instances of the --log-opt <NAME>=<VALUE> flag. Even if the container uses the default logging driver, it can use different configurable options.
+
+The following example starts an Alpine container with the none logging driver.
+```sh
+docker run -it --log-driver none alpine ash
+```
+To find the current logging driver for a running container, if the daemon is using the json-file logging driver, run the following docker inspect command, substituting the container name or ID for <CONTAINER>:
+```sh
+docker inspect -f '{{.HostConfig.LogConfig.Type}}' CONTAINER
+
+json-file
+```
