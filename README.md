@@ -489,3 +489,24 @@ Example:
 ```sh
 docker cp styles.css web1:/usr/share/nginx/html/
 ```
+
+
+## Docker logs
+
+Docker includes multiple logging mechanisms to help you get information from running containers and services. These mechanisms are called logging drivers. Each Docker daemon has a default logging driver, which each container uses unless you configure it to use a different logging driver, or log driver for short.
+
+```sh
+docker container logs [OPTIONS] CONTAINER
+docker logs
+```
+
+The `docker logs` command batch-retrieves logs present at the time of execution.<br>
+The `docker logs --details` command will add on extra attributes, such as environment variables and labels, provided to `--log-opt` when creating the container.
+
+If you don't specify a logging driver, the default is json-file. To find the current default logging driver for the Docker daemon, run docker info and search for Logging Driver. You can use the following command on Linux, macOS, or PowerShell on Windows:
+
+```sh
+docker info --format '{{.LoggingDriver}}'
+
+json-file
+```
